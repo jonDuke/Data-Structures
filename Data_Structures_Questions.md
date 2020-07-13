@@ -4,29 +4,67 @@ Answer the following questions for each of the data structures you implemented a
 
 1. What is the runtime complexity of `push` using a list?
 
+  - O(n)
+  - In the worst case, the list needs to allocate more memory and ends up with the "doubling problem"
+
 2. What is the runtime complexity of `push` using a linked list?
+
+  - O(1)
+  - Adding to either end of a linked list is O(1)
 
 3. What is the runtime complexity of `pop` using a list?
 
+  - O(1)
+  - Removing from a list is O(1)
+
 4. What is the runtime complexity of `pop` using a linked list?
+
+  - O(1)
+  - Removing from a linked list is O(1)
 
 5. What is the runtime complexity of `len` using a list?
 
+  - O(1)
+  - Getting the length of a list is O(1)
+
 6. What is the runtime complexity of `len` using a linked list?
+
+  - O(n)
+  - Getting the length of a linked list requires iterating through and counting each node.
 
 ## Queue
 
 1. What is the runtime complexity of `enqueue` using a list?
 
+  - O(n)  (worst case, when the list has to allocate more memory)
+  - Same as before, this is just adding to a list.
+  - If you insert at index 0 and treat index -1 as the front of the queue, then this would always be O(n) since the list would have to shift each entry in memory.
+
 2. What is the runtime complexity of `enqueue` using a linked list?
+
+  - O(1)
+  - Same as before, this just adds a single node to the linked list.
 
 3. What is the runtime complexity of `dequeue` using a list?
 
+  - O(n) or O(1)
+  - If index -1 is the front of the queue, then this is O(1) since you would just remove the last item of the list.
+  - If index 0 is the front of the queue, then each item in memory would need to be shifted.
+
 4. What is the runtime complexity of `dequeue` using a linked list?
+
+  - O(1)
+  - Again, just removing one node.  Works the same in either direction.
 
 5. What is the runtime complexity of `len` using a list?
 
+  - O(1)
+  - Same as with stack
+
 6. What is the runtime complexity of `len` using a linked list?
+
+  - O(n)
+  - Same as with stack
 
 ## Doubly Linked List
 
