@@ -10,6 +10,7 @@ return elements in Last In First Out order.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Stack?
 """
+# Allows the test file to import LinkedList from the other folder
 import sys
 sys.path.append("../")
 

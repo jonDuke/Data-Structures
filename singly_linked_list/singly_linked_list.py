@@ -48,6 +48,12 @@ class LinkedList:
         # reference to the tail of the list
         self.tail = None
 
+    def prepend(self, value):
+        # create a new node and point next_node at the old head
+        new_node = Node(value, self.head)
+        # update self.head to point to the new node
+        self.head = new_node
+
     def add_to_tail(self, value):
         # wrap the input value in a node
         new_node = Node(value, None)
