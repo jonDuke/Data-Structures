@@ -100,6 +100,7 @@ class LinkedList:
 
         value = self.tail.get_value()
         self.tail = current
+        self.tail.next_node = None  # remove new tail's reference to the old tail
         return value
 
     def contains(self, value):
@@ -143,3 +144,13 @@ class LinkedList:
             # update the current node to the next node in the list
             current = current.get_next()
         return max_value
+    
+    def get_len(self):
+        count = 0
+        node = self.head
+        while node != None:
+            # add 1 and move to next node
+            count += 1
+            node = node.next_node
+        return count
+
