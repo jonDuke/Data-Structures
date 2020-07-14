@@ -158,3 +158,18 @@ class DoublyLinkedList:
             current = current.next
         
         return max
+    
+    """
+    Finds and returns the node with the given value,
+    returns None if the value is not found.
+    """
+    def find_node(self, value):
+        # Go through each node, return it if the value matches
+        current = self.head
+        while current is not None:
+            if current.value == value:
+                return current
+            current = current.next
+        
+        # All nodes have been checked and none matched, return None
+        return None
