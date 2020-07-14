@@ -29,8 +29,8 @@ Answer the following questions for each of the data structures you implemented a
 
 6. What is the runtime complexity of `len` using a linked list?
 
-  - O(n)
-  - Getting the length of a linked list requires iterating through and counting each node.
+  - O(1)
+  - By keeping track of a size parameter in the linked list, and modifying it any time a node is added or removed, we can get len in O(1)
 
 ## Queue
 
@@ -63,7 +63,7 @@ Answer the following questions for each of the data structures you implemented a
 
 6. What is the runtime complexity of `len` using a linked list?
 
-  - O(n)
+  - O(1)
   - Same as with stack
 
 ## Doubly Linked List

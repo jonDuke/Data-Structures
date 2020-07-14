@@ -47,14 +47,20 @@ class LinkedList:
         self.head = None
         # reference to the tail of the list
         self.tail = None
+        self.size = 0
+    
+    def __len__(self):
+        return self.size
 
     def prepend(self, value):
         # create a new node and point next_node at the old head
         new_node = Node(value, self.head)
         # update self.head to point to the new node
         self.head = new_node
+        self.size += 1
 
     def add_to_tail(self, value):
+        self.size += 1
         # wrap the input value in a node
         new_node = Node(value, None)
         # check if there is no head (i.e., the list is empty)
@@ -73,6 +79,9 @@ class LinkedList:
         # return None if there is no head (i.e. the list is empty)
         if not self.head:
             return None
+        
+        self.size -= 1
+
         # if head has no next, then we have a single element in our list
         if not self.head.get_next():
             # get a reference to the head
@@ -83,6 +92,7 @@ class LinkedList:
             self.tail = None
             # return the value
             return head.get_value()
+
         # otherwise we have more than one element in our list
         value = self.head.get_value()
         # set the head reference to the current head's next node in the list
@@ -93,6 +103,7 @@ class LinkedList:
         if not self.head:
             return None
         
+        self.size -= 1
         if self.head is self.tail:
             value = self.head.get_value()
             self.head = None
@@ -150,15 +161,6 @@ class LinkedList:
             # update the current node to the next node in the list
             current = current.get_next()
         return max_value
-    
-    def get_len(self):
-        count = 0
-        node = self.head
-        while node != None:
-            # add 1 and move to next node
-            count += 1
-            node = node.next_node
-        return count
     
     def reverse(self):
         """ reverses this linked list """
