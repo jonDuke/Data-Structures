@@ -159,4 +159,17 @@ class LinkedList:
             count += 1
             node = node.next_node
         return count
+    
+    def reverse(self):
+        """ reverses this linked list """
+        prev_node = None
+        next_node = self.head
 
+        while next_node is not None:
+            current = next_node
+            next_node = current.get_next()
+            current.set_next(prev_node)
+            prev_node = current
+        
+        # swap head and tail pointers
+        self.head, self.tail = self.tail, self.head
