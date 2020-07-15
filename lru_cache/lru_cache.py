@@ -1,3 +1,9 @@
+# Allows the test file to import DoublyLinkedList from the other folder
+import sys
+sys.path.append("../")
+
+from doubly_linked_list.doubly_linked_list import DoublyLinkedList
+
 class LRUCache:
     """
     Our LRUCache class keeps track of the max number of nodes it
@@ -7,7 +13,17 @@ class LRUCache:
     to every node stored in the cache.
     """
     def __init__(self, limit=10):
-        pass
+        self.limit = limit
+        self.length = 0
+        self.order_list = DoublyLinkedList()
+        self.storage = {}
+    
+    def __len__(self):
+        return self.length
+
+    """ returns true if the key exists in this cache, false otherwise """
+    def has_key(self, key):
+        return key in self.storage
 
     """
     Retrieves the value associated with the given key. Also
@@ -17,7 +33,18 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        pass
+        # check if the key exists
+        if not self.has_key(key) or self.length == 0:
+            return None
+        
+        # find the node with this key
+        node = self.order_list.find_node(key)
+        
+        # move that node to the end of the used-order list
+        self.order_list.move_to_end(node)
+        
+        # return the value
+        return self.storage[key]
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -30,4 +57,26 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        pass
+        if self.has_key(key):
+            # overwriting an existing entry
+            self.storage[key] = value
+
+            # find existing node and move it to end
+            node = self.order_list.find_node(key)
+            self.order_list.move_to_end(node)
+        else:
+            # creating a new entry
+            self.storage[key] = value
+            
+            # add new node to the end of the list
+            self.order_list.add_to_tail(key)
+            
+            # if we are at the size limit, remove the oldest item
+            if self.length == self.limit:
+                # remove the oldest used entry from both the
+                # order list and storage dict
+                old_key = self.order_list.remove_from_head()
+                del self.storage[old_key]
+            else:
+                # not at the limit, just added the new item
+                self.length += 1
