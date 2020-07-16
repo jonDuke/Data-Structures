@@ -92,6 +92,8 @@ class BSTNode:
             if self.right:
                 self.right.for_each(fn, order)
             fn(self.value)
+        else:
+            raise Warning(f'Unrecognized order parameter: "{order}"\n\tOptions are "inorder", "preorder" and "postorder"')
 
     # Part 2 -----------------------
 
