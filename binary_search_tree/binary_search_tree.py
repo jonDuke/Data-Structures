@@ -64,30 +64,41 @@ class BSTNode:
             return self.value
 
     # Call the function `fn` on the value of each node
-    def for_each(self, fn):
-        # Call the function on this value
-        fn(self.value)
+    def for_each(self, fn, order="inorder"):
+        """
+        Calls a function (fn) on all values in this binary search tree.
 
-        # Call on left and right subtrees
-        if self.left:
-            self.left.for_each(fn)
-        if self.right:
-            self.right.for_each(fn)
-        
+        order (str): The order in which to traverse the tree.  Options are 
+                     "inorder", "preorder" and "postorder"
+        """
+        if order == "inorder":
+            # Call fn on left subtree, then this node, then right subtree
+            if self.left:
+                self.left.for_each(fn, order)
+            fn(self.value)
+            if self.right:
+                self.right.for_each(fn, order)
+        elif order == "preorder":
+            # Call fn on this node, then left subtree and right subtree
+            fn(self.value)
+            if self.left:
+                self.left.for_each(fn, order)
+            if self.right:
+                self.right.for_each(fn, order)
+        elif order == "postorder":
+            # Call fn on left subtree and right subtree, then this node
+            if self.left:
+                self.left.for_each(fn, order)
+            if self.right:
+                self.right.for_each(fn, order)
+            fn(self.value)
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        # Print left subtree
-        if self.left:
-            self.left.in_order_print(self.left)
-        # Print self
-        print(self.value)
-        # Print right subtree
-        if self.right:
-            self.right.in_order_print(self.right)
+        self.for_each(fn=lambda x: print(x), order="inorder")
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -126,22 +137,8 @@ class BSTNode:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        # Print self
-        print(self.value)
-        # Print left subtree
-        if self.left:
-            self.left.pre_order_dft(self.left)
-        # Print right subtree
-        if self.right:
-            self.right.pre_order_dft(self.right)
+        self.for_each(fn=lambda x: print(x), order="preorder")
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        # Print left subtree
-        if self.left:
-            self.left.post_order_dft(self.left)
-        # Print right subtree
-        if self.right:
-            self.right.post_order_dft(self.right)
-        # Print self
-        print(self.value)
+        self.for_each(fn=lambda x: print(x), order="postorder")
